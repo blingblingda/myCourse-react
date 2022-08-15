@@ -43,3 +43,7 @@
    5. 使用 dynaimc props 单独修改某一条 style，好处是可以不用单独写两个选项二的 css 避免重复。
       1. 给 FormControl 增加一个属性(prop): invalid，给一个默认状态!isValid
       2. 这个 prop 就可以用在样式组件``里，在可能会有变化的属性上，用${function+三元表达式}做判断
+5. 在 styled components 中增加 Media Queries
+   1. 让 button 在 768px 以上宽度为 auto（较小），当屏幕宽度小于 768，则拉长到屏幕宽度
+   2. 在 button 的 styled 里，默认目前写的是小屏内容。加宽度 100%。
+   3. 下面直接给@media，设置 768 以上为 auto
