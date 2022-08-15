@@ -20,6 +20,7 @@
       此 function 其实还是重新设置 goal 的 array，用 filter 把 id 不等需要删除的 id 的 obj 拿出来组成新的 array，然后更新 array 的 state 即可
    6. 设置 conditional content: let content 是一句话（默认），然后加判断条件，如果 array 有长度，那么 content 就变为 List 这个组件，并把 array 和 deleteItemHandler 传过去）
 5. UI 组件中的 Button，给 Button 单独设计一个组件，这样有需要这个格式的 button 都可以套壳使用。因为是壳子，所以很多属性都要依赖 props 的相关内容，不需要定死。
+   **Project start, structure completed **
 
 ## setting styles dynamically
 
@@ -43,7 +44,16 @@
    5. 使用 dynaimc props 单独修改某一条 style，好处是可以不用单独写两个选项二的 css 避免重复。
       1. 给 FormControl 增加一个属性(prop): invalid，给一个默认状态!isValid
       2. 这个 prop 就可以用在样式组件``里，在可能会有变化的属性上，用${function+三元表达式}做判断
+         **set styled component & Dynamic props**
 5. 在 styled components 中增加 Media Queries
    1. 让 button 在 768px 以上宽度为 auto（较小），当屏幕宽度小于 768，则拉长到屏幕宽度
    2. 在 button 的 styled 里，默认目前写的是小屏内容。加宽度 100%。
    3. 下面直接给@media，设置 768 以上为 auto
+      **add media queries option**
+6. 问题：styled components 解决了 css scope 的问题，但是 css 会被写在 js 组件中。css 想单独写又想限制 scope 给特定的 js 用，则需要使用 CSS modules
+   1. js 和 css 仍然分开书写，但 css 后缀改为 xxx.module.css 并引入 js，引入时需要给个名字
+   2. return 里用回 div，但这里的 className 需要按照 CSS module 的写法: className={styles["form-control"]}
+   3. className 里面还有一个判断逻辑，因此使用`xxx`把逻辑增加的 css 拼串在后面: className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
+7. 在 css module 中增加 Media Queries
+   1. 把@media 正常写在 css 中
+   2. button tag 里的 className 需要改为 CSS module 格式{styles.button}
